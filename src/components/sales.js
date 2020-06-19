@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import SalesBar from "./salesBar";
+import SalesPie from "./salesPie";
 
 class Sales extends Component {
 
@@ -8,9 +9,13 @@ class Sales extends Component {
         this.state = {};
 
     }
+
     render() {
         return (
-            <SalesBar/>
+            <div>
+                <SalesBar/>
+                <SalesPie/>
+            </div>
         )
     }
 }
