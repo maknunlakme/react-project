@@ -3,10 +3,15 @@ import Login from './components/login';
 import './App.css';
 import Home from './components/home';
 import {connect} from 'react-redux';
+import {getSalesData} from "./store/Actions";
 
 class App extends Component {
   constructor(props) {
     super(props);
+  }
+
+  componentDidMount() {
+    this.props.getSalesData();
   }
 
   render() {
@@ -20,4 +25,4 @@ const mapStateToProps = state => ({
   login: state.LoginData.isLoggedIn
 });
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, {getSalesData})(App);

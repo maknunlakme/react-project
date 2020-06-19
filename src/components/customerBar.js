@@ -1,10 +1,10 @@
 import React, {Component} from "react";
-import {Pie} from 'react-chartjs-2';
+import {Bar} from 'react-chartjs-2';
 import {connect} from "react-redux";
 import {getSalesData} from "../store/Actions";
 import moment from 'moment'
 
-class SalesPie extends Component {
+class CustomerBar extends Component {
 
     constructor(props) {
         super(props);
@@ -23,21 +23,17 @@ class SalesPie extends Component {
         console.log('this year month: ', year, month);
         console.log('data handler: ', data);
         let chartData = {
-            label: [],
-            datasets: [{
-                data: [],
-                backgroundColor: []
-            }]
+            datasets: []
         };
-
-        console.log('show char data fist: ', chartData);
 
         // eslint-disable-next-line array-callback-return
         data.map((val) => {
-            if (chartData.label.find((test) => test === val.product) === undefined) {
-                chartData.label.push(val.product);
-                chartData.datasets[0].data.push(0);
-                chartData.datasets[0].backgroundColor.push(color.pop());
+            if (chartData.datasets.find((test) => test.label === val.district) === undefined) {
+                chartData.datasets.push({
+                    label: val.district,
+                    backgroundColor: color.pop(),
+                    data: []
+                });
             }
         });
 
@@ -45,10 +41,15 @@ class SalesPie extends Component {
         data.map((val) => {
             if ((val.date.slice(0, 4) === year) && (val.date.slice(5, 7) === month)) {
                 // eslint-disable-next-line array-callback-return
-                chartData.label.map((product, index) => {
-                    if (product === val.product) {
-                        chartData.datasets[0].data[index] += val.order_quantity;
-                        console.log('previous value: ', chartData.datasets[0].data[index], val.order_quantity);
+                chartData.datasets.map((district) => {
+                    if (district.label === val.district) {
+                        const previous = district.data[parseInt(val.date.slice(8, 10))-1];
+                        if (previous !== undefined) {
+                            district.data[parseInt(val.date.slice(8, 10))-1] = previous + 1;
+                        } else {
+                            district.data[parseInt(val.date.slice(8, 10))-1] = 1;
+                        }
+                        console.log('previous value: ', val.district, val.date, previous);
                     }
                 });
             }
@@ -58,11 +59,11 @@ class SalesPie extends Component {
         let labelForMonth = Array.from(Array(daysInMonth), (d, i) => i + 1);
 
         console.log('days in month: ', daysInMonth, labelForMonth, color.pop());
-        console.log('chart data pie pie pie: ', chartData);
+        console.log('chart data: ', chartData);
 
         this.setState(
             {
-                labels: chartData.label,
+                labels: labelForMonth,
                 datasets: chartData.datasets
             }
         )
@@ -76,8 +77,15 @@ class SalesPie extends Component {
     render() {
         return (
             <div>
-                <h1>SalesPie</h1>
-                <Pie data={this.state}/>
+                <h1>CustomerBar</h1>
+                <Bar
+                    data={this.state}
+                    width={100}
+                    height={50}
+                    options={{
+                        maintainAspectRatio: false
+                    }}
+                />
             </div>
         )
     }
@@ -89,4 +97,4 @@ const mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps, {getSalesData})(SalesPie)
+export default connect(mapStateToProps, {getSalesData})(CustomerBar)

@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import {getSalesData} from "../store/Actions";
 import moment from 'moment'
 
-class SalesPie extends Component {
+class CustomerPie extends Component {
 
     constructor(props) {
         super(props);
@@ -34,8 +34,8 @@ class SalesPie extends Component {
 
         // eslint-disable-next-line array-callback-return
         data.map((val) => {
-            if (chartData.label.find((test) => test === val.product) === undefined) {
-                chartData.label.push(val.product);
+            if (chartData.label.find((test) => test === val.customer_work_area) === undefined) {
+                chartData.label.push(val.customer_work_area);
                 chartData.datasets[0].data.push(0);
                 chartData.datasets[0].backgroundColor.push(color.pop());
             }
@@ -45,10 +45,10 @@ class SalesPie extends Component {
         data.map((val) => {
             if ((val.date.slice(0, 4) === year) && (val.date.slice(5, 7) === month)) {
                 // eslint-disable-next-line array-callback-return
-                chartData.label.map((product, index) => {
-                    if (product === val.product) {
-                        chartData.datasets[0].data[index] += val.order_quantity;
-                        console.log('previous value: ', chartData.datasets[0].data[index], val.order_quantity);
+                chartData.label.map((value, index) => {
+                    if (value === val.customer_work_area) {
+                        chartData.datasets[0].data[index]++;
+                        console.log('previous value: ', chartData.datasets[0].data[index]);
                     }
                 });
             }
@@ -58,7 +58,7 @@ class SalesPie extends Component {
         let labelForMonth = Array.from(Array(daysInMonth), (d, i) => i + 1);
 
         console.log('days in month: ', daysInMonth, labelForMonth, color.pop());
-        console.log('chart data pie pie pie: ', chartData);
+        console.log('chart data pie pie pie: ', chartData, data);
 
         this.setState(
             {
@@ -76,7 +76,7 @@ class SalesPie extends Component {
     render() {
         return (
             <div>
-                <h1>SalesPie</h1>
+                <h1>CustomerPie</h1>
                 <Pie data={this.state}/>
             </div>
         )
@@ -89,4 +89,4 @@ const mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps, {getSalesData})(SalesPie)
+export default connect(mapStateToProps, {getSalesData})(CustomerPie)

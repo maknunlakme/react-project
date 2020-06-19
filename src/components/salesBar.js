@@ -43,11 +43,11 @@ class SalesBar extends Component {
                 // eslint-disable-next-line array-callback-return
                 chartData.datasets.map((product) => {
                     if (product.label === val.product) {
-                        const previous = product.data[parseInt(val.date.slice(8, 10))];
+                        const previous = product.data[parseInt(val.date.slice(8, 10))-1];
                         if (previous !== undefined) {
-                            product.data[parseInt(val.date.slice(8, 10))] = previous + val.order_quantity;
+                            product.data[parseInt(val.date.slice(8, 10))-1] = previous + val.order_quantity;
                         } else {
-                            product.data[parseInt(val.date.slice(8, 10))] = val.order_quantity;
+                            product.data[parseInt(val.date.slice(8, 10))-1] = val.order_quantity;
                         }
                         console.log('previous value: ', val.product, val.date, previous, val.order_quantity);
                     }
@@ -70,7 +70,7 @@ class SalesBar extends Component {
     }
 
     componentDidMount() {
-        this.props.getSalesData();
+        //this.props.getSalesData();
         this.dataHandler();
     }
 

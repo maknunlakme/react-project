@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import CustomerBar from "./customerBar";
+import CustomerPie from "./customerPie";
 
 class Customer extends Component {
 
@@ -11,6 +13,8 @@ class Customer extends Component {
         return (
             <div>
                 <h1>Customer</h1>
+                <CustomerBar/>
+                <CustomerPie/>
             </div>
         )
     }
