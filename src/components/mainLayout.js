@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
+import Sales from "./sales";
+import Customer from "./customer";
 
 class MainLayout extends Component {
 
@@ -12,7 +14,7 @@ class MainLayout extends Component {
     render() {
         console.log('this sales: ', this.props.sales);
         return (
-            this.props.sales ? <h2>Sales</h2> : <h2>Customer</h2>
+            this.props.sales ? <Sales/> : <Customer/>
         )
     }
 }
