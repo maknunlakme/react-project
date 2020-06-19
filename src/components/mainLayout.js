@@ -12,7 +12,6 @@ class MainLayout extends Component {
 
 
     render() {
-        console.log('this sales: ', this.props.sales);
         return (
             this.props.sales ? <Sales/> : <Customer/>
         )

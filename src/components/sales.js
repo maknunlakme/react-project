@@ -1,18 +1,16 @@
 import React, {Component} from 'react';
+import SalesBar from "./salesBar";
 
 class Sales extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {};
+
     }
-
-
     render() {
         return (
-            <div>
-                <h1>Sales</h1>
-            </div>
+            <SalesBar/>
         )
     }
 }

@@ -7,7 +7,6 @@ class Customer extends Component {
         this.state = {}
     }
 
-
     render() {
         return (
             <div>
