@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import {connect} from "react-redux";
 import {loginUpdate} from "../store/Actions";
+import {Form, Button, Image} from "react-bootstrap";
 
 class Login extends Component {
 
@@ -44,24 +45,25 @@ class Login extends Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
-                <div>
-                    <label>Username</label>
-                    <input type="text" value={this.state.username} onChange={this.handleUsernameChange}/>
-                </div>
-                <div>
-                    <label>Password</label>
-                    <input type="password" value={this.state.password} onChange={this.handlePasswordChange}/>
-                </div>
-                <button type="submit">Submit</button>
-            </form>
+            <div className='login-page'>
+                <Image src={require('./../assets/earth .gif')} alt='logo' fluid width='500px' className='login-logo'/>
+                <br/>
+                <Form.Group>
+                    <Form.Control type="text" placeholder='username' value={this.state.username}
+                                  onChange={this.handleUsernameChange}/>
+                    <br/>
+                    <Form.Control type="password" placeholder='password' value={this.state.password}
+                                  onChange={this.handlePasswordChange}/>
+                    <br/>
+                    <Button variant="secondary" type="submit" onClick={this.handleSubmit} block>Submit</Button>
+                </Form.Group>
+            </div>
         )
     }
 }
 
 const mapStateToProps = (state) => {
-    return {
-    }
+    return {}
 };
 
 export default connect(mapStateToProps, {loginUpdate})(Login);

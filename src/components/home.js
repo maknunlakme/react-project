@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import NavbarComponent from './navbarComponent';
 import HomeLayout from "./homeLayout";
+import Loader from "./loader";
+import {connect} from "react-redux";
+import {getSalesData} from "../store/Actions";
 
 class Home extends Component {
 
@@ -9,15 +12,24 @@ class Home extends Component {
         this.state = {}
     }
 
+    componentDidMount() {
+        this.props.getSalesData();
+    }
 
     render() {
         return (
-            <div>
-                <NavbarComponent/>
-                <HomeLayout/>
-            </div>
+            this.props.sales.length !== 0 ?
+                <div>
+                    <NavbarComponent/>
+                    <HomeLayout/>
+                </div> :
+                <Loader/>
         )
     }
 }
 
-export default Home;
+const mapStateToProps = state => ({
+    sales: state.salesData.sales
+});
+
+export default connect(mapStateToProps, {getSalesData})(Home);

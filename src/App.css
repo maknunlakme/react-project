@@ -1,23 +1,23 @@
 .sidebar-background {
     background-color: #f8f9fa;
     position: absolute;
-    top: 70px;
+    top: 80px;
 }
 
 .main-layout-background {
     position: absolute;
-    top: 70px;
+    top: 80px;
 }
 
 .item-list-background {
     position: absolute;
-    top: 70px;
+    top: 80px;
     margin: auto;
     width: 100%;
 }
 
 .jumbotron {
-    background-color: #f8f9fa!important;
+    background-color: #f8f9fa !important;
 }
 
 .centered {
@@ -26,4 +26,27 @@
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
+}
+
+.login-logo {
+    display: block;
+    margin: auto;
+}
+
+.login-page {
+    display: block;
+    margin: auto;
+    width: 80%;
+}
+
+@media (min-width: 576px) {
+    .login-page {
+        width: 50%;
+    }
+}
+
+@media (min-width: 768px) {
+    .login-page {
+        width: 30%;
+    }
 }

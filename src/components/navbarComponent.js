@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {dashboardNavigate, loginUpdate} from "../store/Actions";
-import {Navbar, Nav} from 'react-bootstrap';
+import {Navbar, Nav, Image} from 'react-bootstrap';
 
 
 class NavbarComponent extends Component {
@@ -28,7 +28,9 @@ class NavbarComponent extends Component {
     render() {
         return (
             <Navbar bg="light" variant="light" fixed='top'>
-                <Navbar.Brand>Logo</Navbar.Brand>
+                <Navbar.Brand>
+                    <Image src={require('./../assets/earth .gif')} alt='logo' width='50px'/>
+                </Navbar.Brand>
                 <Nav className="mr-auto">
                     <Nav.Link onClick={this.dashboardHandler}>Dashboard</Nav.Link>
                     <Nav.Link onClick={this.itemListHandler}>ItemList</Nav.Link>
