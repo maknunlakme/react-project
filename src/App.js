@@ -1,17 +1,10 @@
 import React, {Component} from 'react';
-import Login from './components/login';
-import './App.css';
-import Home from './components/home';
+import Login from './components/Login';
+import Home from './components/Home';
 import {connect} from 'react-redux';
-import {getSalesData} from "./store/Actions";
-import Loader from "./components/loader";
+import './App.css';
 
 class App extends Component {
-
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             this.props.login ? <Home/> : <Login/>
