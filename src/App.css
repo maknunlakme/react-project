@@ -1,7 +1,7 @@
 .sidebar-background {
     background-color: #f8f9fa;
     position: absolute;
-    top: 50px;
+    top: 70px;
 }
 
 .main-layout-background {
@@ -13,4 +13,9 @@
     position: absolute;
     top: 70px;
     margin: auto;
+    width: 100%;
+}
+
+.jumbotron {
+    background-color: #f8f9fa!important;
 }

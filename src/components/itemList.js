@@ -26,12 +26,13 @@ class ItemList extends Component {
 
     render() {
         return (
+            <div className='item-list-background'>
             <MaterialTable
                 title="Item List"
                 columns={this.state.columns}
                 data={this.props.sales}
-                align='center'
             />
+            </div>
         );
     }
 }
