@@ -3,6 +3,7 @@ import {Pie} from 'react-chartjs-2';
 import {connect} from "react-redux";
 import {getSalesData} from "../store/Actions";
 import moment from 'moment'
+import {Jumbotron} from "react-bootstrap";
 
 class SalesPie extends Component {
 
@@ -76,7 +77,13 @@ class SalesPie extends Component {
     render() {
         return (
             <div>
-                <h1>SalesPie</h1>
+                <Jumbotron>
+                    <h1>Sales Pie Chart</h1>
+                    <p>
+                        The pie chart contains product wise comparison of
+                        order quantities of all sold products for this month.
+                    </p>
+                </Jumbotron>
                 <Pie data={this.state}/>
             </div>
         )

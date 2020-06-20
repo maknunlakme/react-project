@@ -3,6 +3,7 @@ import {Bar} from 'react-chartjs-2';
 import {connect} from "react-redux";
 import {getSalesData} from "../store/Actions";
 import moment from 'moment'
+import {Jumbotron} from "react-bootstrap";
 
 class SalesBar extends Component {
 
@@ -77,14 +78,18 @@ class SalesBar extends Component {
     render() {
         return (
             <div>
-                <h1>SalesBar</h1>
+                <Jumbotron>
+                    <h1>Sales Bar Chart</h1>
+                    <p>
+                        The bar chart contains product wise order quantity grouped by dates for this month.
+                        The x-axis contains the dates, y-axis contains the counts for different products
+                        with different colors
+                    </p>
+                </Jumbotron>
                 <Bar
                     data={this.state}
                     width={100}
-                    height={50}
-                    options={{
-                        maintainAspectRatio: false
-                    }}
+                    height={30}
                 />
             </div>
         )

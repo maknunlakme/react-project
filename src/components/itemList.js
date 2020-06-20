@@ -30,6 +30,7 @@ class ItemList extends Component {
                 title="Item List"
                 columns={this.state.columns}
                 data={this.props.sales}
+                align='center'
             />
         );
     }

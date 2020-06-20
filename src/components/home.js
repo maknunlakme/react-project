@@ -1,8 +1,5 @@
 import React, {Component} from 'react';
-import Navbar from '../components/navbar';
-import {connect} from "react-redux";
-import Dashboard from "./dashboard";
-import ItemList from "./itemList";
+import NavbarComponent from './navbarComponent';
 import HomeLayout from "./homeLayout";
 
 class Home extends Component {
@@ -16,8 +13,7 @@ class Home extends Component {
     render() {
         return (
             <div>
-                <h1>Home</h1>
-                <Navbar/>
+                <NavbarComponent/>
                 <HomeLayout/>
             </div>
         )

@@ -3,6 +3,7 @@ import {Pie} from 'react-chartjs-2';
 import {connect} from "react-redux";
 import {getSalesData} from "../store/Actions";
 import moment from 'moment'
+import {Jumbotron} from "react-bootstrap";
 
 class CustomerPie extends Component {
 
@@ -76,7 +77,12 @@ class CustomerPie extends Component {
     render() {
         return (
             <div>
-                <h1>CustomerPie</h1>
+                <Jumbotron>
+                    <h1>Customer Pie Chart</h1>
+                    <p>
+                        The pie chart contains working area wise customer counts for all customers.
+                    </p>
+                </Jumbotron>
                 <Pie data={this.state}/>
             </div>
         )

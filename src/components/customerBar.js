@@ -3,6 +3,7 @@ import {Bar} from 'react-chartjs-2';
 import {connect} from "react-redux";
 import {getSalesData} from "../store/Actions";
 import moment from 'moment'
+import {Jumbotron} from "react-bootstrap";
 
 class CustomerBar extends Component {
 
@@ -77,14 +78,18 @@ class CustomerBar extends Component {
     render() {
         return (
             <div>
-                <h1>CustomerBar</h1>
+                <Jumbotron>
+                    <h1>Customer Bar Chart</h1>
+                    <p>
+                        The bar chart contains district wise customer counts grouped by dates for this month.
+                        The x-axis contains the dates, y-axis contains the counts for different districts
+                        with different colors
+                    </p>
+                </Jumbotron>
                 <Bar
                     data={this.state}
                     width={100}
-                    height={50}
-                    options={{
-                        maintainAspectRatio: false
-                    }}
+                    height={30}
                 />
             </div>
         )

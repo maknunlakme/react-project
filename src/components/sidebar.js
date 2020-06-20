@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {salesNavigate} from "../store/Actions";
+import {Navbar, Nav} from 'react-bootstrap';
 
 class Sidebar extends Component {
 
@@ -21,11 +22,12 @@ class Sidebar extends Component {
 
     render() {
         return (
-            <div>
-                <h1>Sidebar</h1>
-                <button onClick={this.salesHandler}>Sales</button>
-                <button onClick={this.customerHandler}>Customer</button>
-            </div>
+            <Navbar bg="light" variant="light">
+            <Nav className="flex-column">
+               <Nav.Link onClick={this.salesHandler}>Sales</Nav.Link>
+                <Nav.Link onClick={this.customerHandler}>Customer</Nav.Link>
+            </Nav>
+            </Navbar>
         )
     }
 }
