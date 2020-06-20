@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import {connect} from "react-redux";
-import {loginUpdate} from "../store/Actions";
-import {Form, Button, Image} from "react-bootstrap";
+import {connect} from 'react-redux';
+import {loginUpdate} from '../store/Actions';
+import {Form, Button, Image} from 'react-bootstrap';
 
 class Login extends Component {
 
@@ -29,16 +29,13 @@ class Login extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        console.log('submit handler: ', this.state);
         axios.post('http://frontend.interview.dingi.work/user/login/', this.state)
             .then(res => {
-                console.log('login response: ', res);
+                console.log('login successful');
                 localStorage.setItem('jwt_token', res.data.jwt_token);
-                localStorage.setItem('user_details', JSON.stringify(res.data.user_details));
                 this.props.loginUpdate(true);
             })
             .catch(err => {
-                //this.props.login;
                 console.log('login error: ', err);
             });
     };

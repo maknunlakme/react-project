@@ -1,22 +1,14 @@
 import React, {Component} from 'react';
-import {connect} from "react-redux";
-import {salesNavigate} from "../store/Actions";
+import {connect} from 'react-redux';
+import {salesNavigate} from '../store/Actions';
 import {Navbar, Nav} from 'react-bootstrap';
 
 class Sidebar extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {}
-    };
-
     salesHandler = () => {
-        console.log('saleseeee');
         this.props.salesNavigate(true);
     };
 
     customerHandler = () => {
-        console.log('blaaah');
         this.props.salesNavigate(false);
     };
 

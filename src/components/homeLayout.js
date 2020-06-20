@@ -1,16 +1,9 @@
 import React, {Component} from 'react';
-import {connect} from "react-redux";
-import Dashboard from "./dashboard";
-import ItemList from "./itemList";
+import {connect} from 'react-redux';
+import Dashboard from './Dashboard';
+import ItemList from './ItemList';
 
 class HomeLayout extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {}
-    }
-
-
     render() {
         return (
             this.props.dashboard ? <Dashboard/> : <ItemList/>

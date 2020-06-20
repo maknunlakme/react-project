@@ -1,16 +1,9 @@
 import React, {Component} from 'react';
-import Sidebar from "./sidebar";
-import MainLayout from "./mainLayout";
-import {Container, Row, Col} from "react-bootstrap";
+import Sidebar from './Sidebar';
+import MainLayout from './MainLayout';
+import {Container, Row, Col} from 'react-bootstrap';
 
 class Dashboard extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {}
-    }
-
-
     render() {
         return (
             <Container fluid>

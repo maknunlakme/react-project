@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import MaterialTable from 'material-table';
 import {connect} from "react-redux";
-import {getSalesData} from "../store/Actions";
 
 class ItemList extends Component {
 
@@ -18,7 +17,6 @@ class ItemList extends Component {
             ]
         }
     }
-
 
     render() {
         return (

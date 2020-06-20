@@ -1,17 +1,11 @@
 import React, {Component} from 'react';
-import NavbarComponent from './navbarComponent';
-import HomeLayout from "./homeLayout";
-import Loader from "./loader";
-import {connect} from "react-redux";
-import {getSalesData} from "../store/Actions";
+import NavbarComponent from './NavbarComponent';
+import HomeLayout from './HomeLayout';
+import Loader from './Loader';
+import {connect} from 'react-redux';
+import {getSalesData} from '../store/Actions';
 
 class Home extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {}
-    }
-
     componentDidMount() {
         this.props.getSalesData();
     }

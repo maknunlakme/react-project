@@ -1,16 +1,10 @@
 import React, {Component} from 'react';
-import {connect} from "react-redux";
-import {dashboardNavigate, loginUpdate} from "../store/Actions";
+import {connect} from 'react-redux';
+import {dashboardNavigate, loginUpdate} from '../store/Actions';
 import {Navbar, Nav, Image} from 'react-bootstrap';
 
 
 class NavbarComponent extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {}
-    }
-
     logOut = (event) => {
         localStorage.clear();
         this.props.loginUpdate(false);

@@ -1,19 +1,22 @@
 import React, {Component} from 'react';
-import {connect} from "react-redux";
-import Sales from "./sales";
-import Customer from "./customer";
+import {connect} from 'react-redux';
+import SalesBar from './SalesBar';
+import SalesPie from './SalesPie';
+import CustomerBar from './CustomerBar';
+import CustomerPie from './CustomerPie';
 
 class MainLayout extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {}
-    }
-
-
     render() {
         return (
-            this.props.sales ? <Sales/> : <Customer/>
+            this.props.sales ?
+                <div>
+                    <SalesBar/>
+                    <SalesPie/>
+                </div> :
+                <div>
+                    <CustomerBar/>
+                    <CustomerPie/>
+                </div>
         )
     }
 }

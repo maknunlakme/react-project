@@ -1,9 +1,9 @@
 import React, {Component} from "react";
 import {Bar} from 'react-chartjs-2';
-import {connect} from "react-redux";
-import {getSalesData} from "../store/Actions";
-import moment from 'moment'
-import {Jumbotron} from "react-bootstrap";
+import {connect} from 'react-redux';
+import moment from 'moment';
+import {Jumbotron} from 'react-bootstrap';
+import {setColor} from '../helpers/Utils';
 
 class SalesBar extends Component {
 
@@ -16,7 +16,7 @@ class SalesBar extends Component {
     }
 
     dataHandler() {
-        const color = ['green', 'orange', 'blue', 'pink', 'yellow', 'red', 'purple', 'teal', 'tomato', 'violet', 'gold'];
+        const color = setColor();
         const year = moment().format('YYYY');
         const month = moment().format('MM');
         const data = [...this.props.sales];
