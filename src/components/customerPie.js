@@ -9,7 +9,6 @@ class CustomerPie extends Component {
 
     constructor(props) {
         super(props);
-        this.props.getSalesData();
         this.state = {
             labels: [],
             datasets: []
@@ -70,7 +69,6 @@ class CustomerPie extends Component {
     }
 
     componentDidMount() {
-        //this.props.getSalesData();
         this.dataHandler();
     }
 
@@ -95,4 +93,4 @@ const mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps, {getSalesData})(CustomerPie)
+export default connect(mapStateToProps)(CustomerPie)

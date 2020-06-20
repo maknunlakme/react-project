@@ -6,11 +6,9 @@ import {connect} from 'react-redux';
 import {getSalesData} from "./store/Actions";
 
 class App extends Component {
+
   constructor(props) {
     super(props);
-  }
-
-  componentDidMount() {
     this.props.getSalesData();
   }
 

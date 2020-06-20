@@ -9,7 +9,6 @@ class SalesPie extends Component {
 
     constructor(props) {
         super(props);
-        this.props.getSalesData();
         this.state = {
             labels: [],
             datasets: []
@@ -70,7 +69,6 @@ class SalesPie extends Component {
     }
 
     componentDidMount() {
-        //this.props.getSalesData();
         this.dataHandler();
     }
 
@@ -96,4 +94,4 @@ const mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps, {getSalesData})(SalesPie)
+export default connect(mapStateToProps)(SalesPie)

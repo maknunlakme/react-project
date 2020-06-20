@@ -5,10 +5,6 @@ import {getSalesData} from "../store/Actions";
 
 class ItemList extends Component {
 
-    componentDidMount() {
-        this.props.getSalesData();
-    }
-
     constructor(props) {
         super(props);
         this.state = {
@@ -43,4 +39,4 @@ const mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps, {getSalesData})(ItemList)
+export default connect(mapStateToProps)(ItemList)
