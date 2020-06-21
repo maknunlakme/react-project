@@ -1,9 +1,8 @@
 import React, {Component} from "react";
 import {Pie} from 'react-chartjs-2';
-import {connect} from "react-redux";
-import {getSalesData} from "../store/Actions";
-import moment from 'moment'
-import {Jumbotron} from "react-bootstrap";
+import {connect} from 'react-redux';
+import {Jumbotron} from 'react-bootstrap';
+import {isCurrentMonth, setColor} from "../helpers/Utils";
 
 class SalesPie extends Component {
 
@@ -16,12 +15,8 @@ class SalesPie extends Component {
     }
 
     dataHandler() {
-        const color = ['green', 'orange', 'blue', 'pink', 'yellow', 'red', 'purple', 'teal', 'tomato', 'violet', 'gold'];
-        const year = moment().format('YYYY');
-        const month = moment().format('MM');
+        const color = setColor();
         const data = [...this.props.sales];
-        console.log('this year month: ', year, month);
-        console.log('data handler: ', data);
         let chartData = {
             label: [],
             datasets: [{
@@ -29,8 +24,6 @@ class SalesPie extends Component {
                 backgroundColor: []
             }]
         };
-
-        console.log('show char data fist: ', chartData);
 
         // eslint-disable-next-line array-callback-return
         data.map((val) => {
@@ -43,22 +36,15 @@ class SalesPie extends Component {
 
         // eslint-disable-next-line array-callback-return
         data.map((val) => {
-            if ((val.date.slice(0, 4) === year) && (val.date.slice(5, 7) === month)) {
+            if (isCurrentMonth(val.date)) {
                 // eslint-disable-next-line array-callback-return
                 chartData.label.map((product, index) => {
                     if (product === val.product) {
                         chartData.datasets[0].data[index] += val.order_quantity;
-                        console.log('previous value: ', chartData.datasets[0].data[index], val.order_quantity);
                     }
                 });
             }
         });
-
-        const daysInMonth = moment(moment().format('YYYY-MM')).daysInMonth();
-        let labelForMonth = Array.from(Array(daysInMonth), (d, i) => i + 1);
-
-        console.log('days in month: ', daysInMonth, labelForMonth, color.pop());
-        console.log('chart data pie pie pie: ', chartData);
 
         this.setState(
             {

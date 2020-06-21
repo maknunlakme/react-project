@@ -1,9 +1,8 @@
 import React, {Component} from "react";
 import {Bar} from 'react-chartjs-2';
 import {connect} from 'react-redux';
-import moment from 'moment';
 import {Jumbotron} from 'react-bootstrap';
-import {setColor} from '../helpers/Utils';
+import {setColor, isCurrentMonth, setLabelForMonth, currentDay} from '../helpers/Utils';
 
 class SalesBar extends Component {
 
@@ -17,11 +16,7 @@ class SalesBar extends Component {
 
     dataHandler() {
         const color = setColor();
-        const year = moment().format('YYYY');
-        const month = moment().format('MM');
         const data = [...this.props.sales];
-        console.log('this year month: ', year, month);
-        console.log('data handler: ', data);
         let chartData = {
             datasets: []
         };
@@ -39,31 +34,25 @@ class SalesBar extends Component {
 
         // eslint-disable-next-line array-callback-return
         data.map((val) => {
-            if ((val.date.slice(0, 4) === year) && (val.date.slice(5, 7) === month)) {
+            if (isCurrentMonth(val.date)) {
+                const index = currentDay(val.date);
                 // eslint-disable-next-line array-callback-return
                 chartData.datasets.map((product) => {
                     if (product.label === val.product) {
-                        const previous = product.data[parseInt(val.date.slice(8, 10))-1];
+                        const previous = product.data[index];
                         if (previous !== undefined) {
-                            product.data[parseInt(val.date.slice(8, 10))-1] = previous + val.order_quantity;
+                            product.data[index] = previous + val.order_quantity;
                         } else {
-                            product.data[parseInt(val.date.slice(8, 10))-1] = val.order_quantity;
+                            product.data[index] = val.order_quantity;
                         }
-                        console.log('previous value: ', val.product, val.date, previous, val.order_quantity);
                     }
                 });
             }
         });
 
-        const daysInMonth = moment(moment().format('YYYY-MM')).daysInMonth();
-        let labelForMonth = Array.from(Array(daysInMonth), (d, i) => i + 1);
-
-        console.log('days in month: ', daysInMonth, labelForMonth, color.pop());
-        console.log('chart data: ', chartData);
-
         this.setState(
             {
-                labels: labelForMonth,
+                labels: setLabelForMonth(),
                 datasets: chartData.datasets
             }
         )

@@ -23,10 +23,10 @@ export const getSalesData = () => {
         await Axios.get('http://frontend.interview.dingi.work/user/data/',
             {headers: {Authorization: 'JWT ' + localStorage.getItem('jwt_token')}})
             .then((res) => {
-                console.log('sales data: ', res);
+                console.log('got sales data successfully');
                 dispatch({type: 'GET_SALES_DATA', payload: res.data});
             }).catch((err) => {
-                console.log('get sales data error: ', err);
+                console.log('sales data error: ', err);
             });
     }
 };
