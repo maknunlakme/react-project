@@ -1,12 +1,21 @@
-.sidebar-background {
-    background-color: #f8f9fa;
-    position: absolute;
-    top: 80px;
+.split {
+    position: fixed;
+    z-index: 1;
+    overflow-x: hidden;
 }
 
-.main-layout-background {
-    position: absolute;
+.left {
     top: 80px;
+    width: 100%;
+    left: 0;
+    background-color: #f8f9fa;
+}
+
+.right {
+    height: 100%;
+    top: 192px;
+    width: 100%;
+    right: 0;
 }
 
 .item-list-background {
@@ -42,6 +51,18 @@
 @media (min-width: 576px) {
     .login-page {
         width: 50%;
+    }
+
+    .left {
+        height: 100%;
+        width: 20%;
+        top: 80px;
+    }
+
+    .right {
+        height: 100%;
+        width: 79%;
+        top: 80px;
     }
 }
 

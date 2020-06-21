@@ -6,16 +6,14 @@ import {Container, Row, Col} from 'react-bootstrap';
 class Dashboard extends Component {
     render() {
         return (
-            <Container fluid>
-                <Row>
-                    <Col xs='12' sm='4' md='3' className='sidebar-background'>
-                        <Sidebar/>
-                    </Col>
-                    <Col xs='12' sm='8' md='9' className='main-layout-background'>
-                        <MainLayout/>
-                    </Col>
-                </Row>
-            </Container>
+            <div>
+                <div className='split left'>
+                    <Sidebar/>
+                </div>
+                <div className='split right'>
+                    <MainLayout/>
+                </div>
+            </div>
         )
     }
 }
