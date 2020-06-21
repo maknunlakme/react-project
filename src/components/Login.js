@@ -11,7 +11,8 @@ class Login extends Component {
 
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            valid: false
         }
     }
 
@@ -27,17 +28,30 @@ class Login extends Component {
         })
     };
 
+    handleValidation = () => {
+        let valid = true;
+        if (!this.state.username) valid = false;
+        if (!this.state.password) valid = false;
+        this.setState({valid: valid});
+        return valid;
+    };
+
     handleSubmit = (event) => {
         event.preventDefault();
-        axios.post('http://frontend.interview.dingi.work/user/login/', this.state)
-            .then(res => {
-                console.log('login successful');
-                localStorage.setItem('jwt_token', res.data.jwt_token);
-                this.props.loginUpdate(true);
-            })
-            .catch(err => {
-                console.log('login error: ', err);
-            });
+        if (this.handleValidation()) {
+            axios.post('http://frontend.interview.dingi.work/user/login/', this.state)
+                .then(res => {
+                    console.log('login successful');
+                    localStorage.setItem('jwt_token', res.data.jwt_token);
+                    this.props.loginUpdate(true);
+                })
+                .catch(err => {
+                    alert('username or password is not valid');
+                    console.log('login error: ', err);
+                });
+        } else {
+            alert('form has errors');
+        }
     };
 
     render() {
@@ -45,15 +59,34 @@ class Login extends Component {
             <div className='login-page'>
                 <Image src={require('./../assets/earth .gif')} alt='logo' fluid width='500px' className='login-logo'/>
                 <br/>
-                <Form.Group>
-                    <Form.Control type="text" placeholder='username' value={this.state.username}
-                                  onChange={this.handleUsernameChange}/>
+                <Form onSubmit={this.handleSubmit} validated={this.state.valid}>
+                    <Form.Group>
+                        <Form.Control
+                            type="text"
+                            placeholder='username'
+                            value={this.state.username}
+                            onChange={this.handleUsernameChange}
+                            required
+                        />
+                        <Form.Control.Feedback type="invalid">
+                            username cannot be empty
+                        </Form.Control.Feedback>
+                    </Form.Group>
                     <br/>
-                    <Form.Control type="password" placeholder='password' value={this.state.password}
-                                  onChange={this.handlePasswordChange}/>
+                    <Form.Group>
+                        <Form.Control
+                            type="password"
+                            placeholder='password'
+                            value={this.state.password}
+                            onChange={this.handlePasswordChange}
+                            required/>
+                        <Form.Control.Feedback type="invalid">
+                            password cannot be empty
+                        </Form.Control.Feedback>
+                    </Form.Group>
                     <br/>
-                    <Button variant="secondary" type="submit" onClick={this.handleSubmit} block>Submit</Button>
-                </Form.Group>
+                    <Button variant="secondary" type="submit" block>Submit</Button>
+                </Form>
             </div>
         )
     }
